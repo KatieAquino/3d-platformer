@@ -22,14 +22,22 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         // Retrieving inputs.
-
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
 
+        // Move player model according to inputs.
         Vector3 dir = new Vector3(xInput, 0, zInput) * moveSpeed;
         dir.y = rig.velocity.y;
 
         rig.velocity = dir;
+
+        // Rotate player model according to inputs.
+        Vector3 facingDir = new Vector3(xInput, 0, zInput);
+
+        
+        
+        transform.forward = facingDir;
+        
     }
 }
 
