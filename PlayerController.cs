@@ -75,6 +75,13 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        
+        // Adds to player score if collides with coin.
+        else if(other.CompareTag("Coin"))
+        {
+            // TODO: add score
+            Destroy(other.gameObject);
+        }
     }
 }
 
