@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -64,6 +65,15 @@ public class PlayerController : MonoBehaviour
         {
             // Adds force to jump to move upward.
             rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // If player collides with enemy the scene will be reloaded.
+        if(other.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
