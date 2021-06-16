@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float jumpForce;
 
     private Rigidbody rig;
 
@@ -17,6 +18,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            TryJump();
+        }
     }
 
     void Move()
@@ -34,10 +40,15 @@ public class PlayerController : MonoBehaviour
         // Rotate player model according to inputs.
         Vector3 facingDir = new Vector3(xInput, 0, zInput);
 
-        
-        
-        transform.forward = facingDir;
-        
+        if(facingDir.magnitude > 0)
+        {
+            transform.forward = facingDir;
+        }
+    }
+
+    void TryJump()
+    {
+        rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }
 
