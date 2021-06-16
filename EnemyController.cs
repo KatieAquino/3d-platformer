@@ -20,6 +20,12 @@ public class EnemyController : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
-    
+        if(transform.position == targetPos)
+        {
+            if(targetPos == startPos)
+                targetPos = startPos + offsetEndPos;
+            else if(targetPos == startPos + offsetEndPos)
+                targetPos = startPos;
+        }
     }
 }
