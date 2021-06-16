@@ -14,6 +14,10 @@ public class CameraFollow : MonoBehaviour
         if(target == null)
             return;
         
-        transform.position = target.transform.position + offset;
+        // Prevents camera from following user along y axis.
+        Vector3 newPos = target.position + offset;
+        newPos.y = offset.y;
+        
+        transform.position = newPos;
     }
 }
