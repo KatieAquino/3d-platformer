@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
         if(cast1 || cast2 || cast3 || cast4)
         {
+            // Adds force to jump to move upward.
             rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
