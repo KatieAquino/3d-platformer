@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
 
     private Rigidbody rig;
+    private AudioSource audioSource;
 
     void Awake()
     {
-        // Retrive the rigidbody componet.
+        // Retrive the rigidbody and audiosource components.
         rig = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -80,6 +82,10 @@ public class PlayerController : MonoBehaviour
         else if(other.CompareTag("Coin"))
         {
             // TODO: add score
+            // Plays audio clip of coin.
+            audioSource.Play();
+
+            // Removes coin from scene.
             Destroy(other.gameObject);
         }
     }
