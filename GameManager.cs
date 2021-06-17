@@ -27,8 +27,14 @@ public class GameManager : MonoBehaviour
     public void AddScore(int scoreToGive)
     {
         score += scoreToGive;
+        GameUI.instance.UpdateScoreText();
     }
-
+    public void ResetScore()
+    {
+        score = 0;
+        GameUI.instance.UpdateScoreText();
+    
+    }
     public void LevelEnd()
     {
         // Checks to see if last level.
@@ -45,12 +51,12 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        // TODO
+        GameUI.instance.SetEndScreen(true);
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameUI.instance.SetEndScreen(false);
     }
 }
 
