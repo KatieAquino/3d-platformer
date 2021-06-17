@@ -12,7 +12,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        // Ensure that game object is not destroyed if it is a new level.
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void AddScore(int scoreToGive)
@@ -23,7 +32,7 @@ public class GameManager : MonoBehaviour
     public void LevelEnd()
     {
         // Checks to see if last level.
-        if(SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex + 1);
+        if(SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex + 1)
         {
             // Display win screen.
             WinGame();

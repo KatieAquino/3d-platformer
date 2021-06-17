@@ -90,6 +90,12 @@ public class PlayerController : MonoBehaviour
             // Plays audio clip of coin.
             audioSource.Play();
         }
+
+        // If player hits goal, move on.
+        else if(other.CompareTag("Goal"))
+        {
+            GameManager.instance.LevelEnd();
+        }
     }
 }
 
