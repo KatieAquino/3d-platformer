@@ -75,18 +75,20 @@ public class PlayerController : MonoBehaviour
         // If player collides with enemy the scene will be reloaded.
         if(other.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.instance.GameOver();
         }
         
         // Adds to player score if collides with coin.
         else if(other.CompareTag("Coin"))
         {
-            // TODO: add score
-            // Plays audio clip of coin.
-            audioSource.Play();
+            // Adds 1 point to player score.
+            GameManager.instance.AddScore(1);
 
             // Removes coin from scene.
             Destroy(other.gameObject);
+
+            // Plays audio clip of coin.
+            audioSource.Play();
         }
     }
 }
