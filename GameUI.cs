@@ -54,12 +54,15 @@ public class GameUI : MonoBehaviour
     public void OnRestartButton()
     {
         GameManager.instance.ResetScore();
-        GameManager.instance.TogglePauseGame();
+        if (GameManager.instance.paused)
+            GameManager.instance.TogglePauseGame();
         SceneManager.LoadScene(1);
     }
 
     public void OnMenuButton()
     {
+        if (GameManager.instance.paused)
+            GameManager.instance.TogglePauseGame();
         SceneManager.LoadScene(0);
     }
 
