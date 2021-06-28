@@ -16,10 +16,14 @@ public class PlayerController : MonoBehaviour
         // Retrive the rigidbody and audiosource components.
         rig = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        Time.timeScale = 1.0f;
     }
 
     void Update()
     {
+        if(GameManager.instance.paused)
+            return;
+        
         Move();
 
         if(Input.GetButtonDown("Jump"))

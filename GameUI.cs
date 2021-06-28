@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     public GameObject endScreen;
     public TextMeshProUGUI endScreenHeader;
     public TextMeshProUGUI endScreenScoreText;
+    public GameObject pauseScreen;
 
     // Instance
     public static GameUI instance;
@@ -38,8 +39,9 @@ public class GameUI : MonoBehaviour
         }
         else
         {
-            endScreenHeader.text = "Game Over";
             endScreenHeader.color = Color.red;
+            endScreenHeader.text = "Game Over";
+            
         
         }
     }
@@ -52,11 +54,22 @@ public class GameUI : MonoBehaviour
     public void OnRestartButton()
     {
         GameManager.instance.ResetScore();
+        GameManager.instance.TogglePauseGame();
         SceneManager.LoadScene(1);
     }
 
     public void OnMenuButton()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void TogglePauseScreen(bool paused)
+    {
+        pauseScreen.SetActive(paused);
+    }
+
+    public void OnResumeButton()
+    {
+        GameManager.instance.TogglePauseGame();
     }
 }
